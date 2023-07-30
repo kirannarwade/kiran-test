@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Register{% endblock title %}
+
+{% block body %}
+    
+<!-- <div class="col-md-12 pb-5">
+    <div class="contact-form">
+        <h3 class="text-center">Register</h3>
+        <div id="success"></div>
+        <form name="sentMessage" id="registerForm" novalidate="novalidate" method="POST">
+            {% csrf_token %}
+            <div class="control-group">
+                <input type="text" class="form-control" id="r_username" name="r_username" placeholder="Username" required="required" data-validation-required-message="This field is required" />
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+                <input type="email" class="form-control" id="r_email" name="r_email" placeholder="Email" required="required" data-validation-required-message="Please enter your email" />
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+                <input type="text" class="form-control" id="r_password_1" name="r_password_1" placeholder="Password" required="required" data-validation-required-message="Please enter a subject" />
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+                <input type="text" class="form-control" id="r_password_2" name="r_password_2" placeholder="Confirm Password" required="required" data-validation-required-message="Please enter a subject" />
+                <p class="help-block text-danger"></p>
+            </div>
+            
+            <div>
+                <button class="btn btn-primary" type="submit" id="sendMessageButton">Send Message</button>
+            </div>
+        </form>
+    </div>
+</div> -->
+
+<!-- alert alert-warning alert-dismissible fade show -->
+  <form action="" method="post" novalidate class="shadow p-5">
+             {% if messages %}
+                {% for message in messages %} 
+                  <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5" {% endif %}>{{message}}</p>
+                {% endfor %}
+             {% endif %}
+             {% csrf_token %}
+           {% for fm in form %}
+            <div class="form-group mb-3">
+                <!-- {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small> -->
+                {{fm}} <p class="help-block text-danger">{{fm.errors|striptags}}</p>
+            </div>
+           {% endfor %}
+           <input type="submit" value="Submit" class="btn btn-primary">
+           <br>
+           <div class="text-center text-primary fw-bold"><p>Existing User? <a href="/login" class="text-danger">Login Now</a></p>
+           </div>
+           {% if form.non_field_errors %}
+              {% for error in form.non_field_errors %}
+              <p class="alert alert-danger my-3">{{error}}</p>
+              {% endfor %}
+           {% endif %}
+          
+          </form>
+{% endblock body %}
